@@ -1,8 +1,8 @@
 import axios from "axios"
-export class AuthService{
+export class AuthService {
 
-    async createAccount({username,password}){
-        try{
+    async createAccount({ username, password }) {
+        try {
             const response = await axios.post("http://localhost:8080/auth/signup",
                 {
                     username,
@@ -11,19 +11,28 @@ export class AuthService{
             )
             return response.data
         }
-        catch(error){
-            console.log("springboot :: create account :: error",error)
+        catch (error) {
+            if (!error.response) {
+                throw new Error("Server is not running")
+            }
+            throw new Error(error.response.data.error)
         }
     }
-    async login({username,password}){
-        try{
-            const response = await axios.post("http://localhost:8080/auth/login",{username,password})
+    async login({ username, password }) {
+        try {
+            const response = await axios.post(
+                "http://localhost:8080/auth/login",
+                { username, password }
+            )
             return response.data
-        }
-        catch(error){
-             console.log("springboot :: login :: error",error)
+        } catch (error) {
+            if (!error.response) {
+                throw new Error("Server is not running")
+            }
+            throw new Error(error.response.data.error)
         }
     }
+
 }
 const authService = new AuthService();
 export default authService
