@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
 import { Provider } from 'react-redux'
-import { RedirectAuthContainer,Home, Signup, Login, Store ,App} from './index'
+import { RedirectAuthContainer,Home, Signup, Login, Store ,App,OAuthSuccess} from './index'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={Store}>
@@ -13,6 +13,7 @@ createRoot(document.getElementById('root')).render(
             <Route  index element={
                 <Home />
             } />
+            <Route path="/oauthsuccess" element={<OAuthSuccess/>}/>
             <Route path="/login" element={
               <RedirectAuthContainer  authentication={false}>
                <Login/>
