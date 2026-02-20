@@ -8,4 +8,5 @@ import Header from './components/Header.jsx'
 import RedirectAuthContainer from './components/RedirectAuthContainer.jsx';
 import App from './App.jsx';
 import GoogleLoginBtn from './components/GoogleLoginBtn.jsx';
-export{Signup,Login,Home,Store,Footer,Logo,Header,RedirectAuthContainer,App,GoogleLoginBtn}
+import OAuthSuccess from './pages/OAuthSuccess.jsx';
+export{Signup,Login,Home,Store,Footer,Logo,Header,RedirectAuthContainer,App,GoogleLoginBtn,OAuthSuccess}
