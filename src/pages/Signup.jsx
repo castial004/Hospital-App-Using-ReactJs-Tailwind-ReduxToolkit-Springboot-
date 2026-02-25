@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Input from '../components/Input'
 import authService from '../Springboot/Auth'
 import { useNavigate,Link } from 'react-router-dom'
+import {GoogleLoginBtn} from '../index'
 const Signup = () => {
     const [username, setUsername] = useState("")
     // const [email,setEmail] = useState("")
@@ -44,7 +45,7 @@ const Signup = () => {
                 <div className='mx-40'>
                     <button className='bg-green-400 hover:bg-green-300 rounded w-full py-4' type='submit'>Submit</button>
                 </div>
-
+                <GoogleLoginBtn text={'Signin with Google'}/>
             </form>
 
         </div>
