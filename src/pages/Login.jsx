@@ -4,6 +4,7 @@ import Input from '../components/Input'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login as loginAction } from '../store/AuthSlice'
+import {GoogleLoginBtn} from '../index'
 const Login = () => {
     const [username, setUsername] = useState("")
     // const [email,setEmail] = useState("")
@@ -11,23 +12,23 @@ const Login = () => {
     const [error, setError] = useState('')
     const navigate = useNavigate()
     const dispatch = useDispatch()
-const handleSubmit = async (e) => {
-    
-    e.preventDefault()
-    setError("")
+    const handleSubmit = async (e) => {
 
-    try {
-        const dbUser = await authService.login({ username, password })
+        e.preventDefault()
+        setError("")
 
-        if (dbUser) {
-            dispatch(loginAction(dbUser))
-            navigate("/")
+        try {
+            const dbUser = await authService.login({ username, password })
+            console.log(dbUser)
+            if (dbUser) {
+                dispatch(loginAction(dbUser))
+                navigate("/")
+            }
+
+        } catch (error) {
+            setError(error.message)
         }
-
-    } catch (error) {
-        setError(error.message)
     }
-}
     return (
         <div className='flex items-center justify-center bg-gray-400 h-screen'>
             <form onSubmit={handleSubmit} className='bg-gray-200 px-10 py-10 rounded-xl relative'>
@@ -44,7 +45,7 @@ const handleSubmit = async (e) => {
                 <div className='mx-40'>
                     <button className='bg-green-400 hover:bg-green-300 rounded w-full py-4' type='submit'>Submit</button>
                 </div>
-
+                <GoogleLoginBtn text={'Login with Google'}/>
             </form>
 
         </div>
